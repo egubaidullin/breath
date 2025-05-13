@@ -13,7 +13,7 @@ import ConfigurationModal from './ConfigurationModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { BarChart, CheckCircle, PlayCircle } from 'lucide-react';
+import { BarChart, CheckCircle } from 'lucide-react'; // Removed PlayCircle as it's not used
 import Link from 'next/link';
 
 const BreathingSession = () => {
@@ -23,7 +23,7 @@ const BreathingSession = () => {
   const handleSessionComplete = (holdDurations: number[]) => {
     const longestThisSession = Math.max(...holdDurations, 0);
     const newSessionRecord: SessionRecord = {
-      id: new Date().toISOString(),
+      id: crypto.randomUUID(), // Use crypto.randomUUID for unique IDs
       date: new Date().toISOString(),
       rounds: sessionState.totalRounds,
       holdDurations: holdDurations,
