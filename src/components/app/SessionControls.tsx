@@ -3,45 +3,44 @@
 import { useLocalization } from '@/contexts/LocalizationContext';
 import { Button } from '@/components/ui/button';
 import type { BreathingPhase } from '@/types';
-import { Play, Pause, SkipForward } from 'lucide-react';
+import { Play, Pause, SkipForward, XCircle } from 'lucide-react';
 
 interface SessionControlsProps {
   phase: BreathingPhase;
-  onStartHold: () => void; // Called after breathing rounds, to signal user is ready to hold
-  onStopHoldTimer: () => void; // User stops the hold timer
-  onNextRound?: () => void; // To manually advance recovery, if needed.
-  isLastRound?: boolean;
+  onStopHoldTimer: () => void; 
+  onCancelSession?: () => void;
 }
 
 const SessionControls = ({
   phase,
-  onStartHold,
   onStopHoldTimer,
+  onCancelSession,
 }: SessionControlsProps) => {
   const { translate } = useLocalization();
 
-  if (phase === 'breathing') {
-    // Button to signal end of breathing and start hold.
-    // Usually this is automatic, but could be a manual trigger.
-    // For Wim Hof, it's typically automatic after last exhale.
-    // This button could be "Ready to Hold" if we want manual advance.
-    // For simplicity, we'll assume automatic transition after breathing phase.
-    return null; 
+  const showCancelButton = phase === 'breathing' || phase === 'holding' || phase === 'recovery';
+
+  // If no buttons are relevant for the current phase, render nothing or a placeholder.
+  if (phase !== 'holding' && !showCancelButton) {
+    return null;
   }
 
-  if (phase === 'holding') {
-    return (
-      <Button onClick={onStopHoldTimer} variant="destructive" size="lg" className="w-full md:w-auto">
-        <Pause className="mr-2 h-5 w-5" />
-        {translate('stopTimer')}
-      </Button>
-    );
-  }
-  
-  // No specific controls needed for 'recovery' or 'finished' typically from this component
-  // as they are timed or lead to a summary screen.
-
-  return null;
+  return (
+    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full mt-4">
+      {phase === 'holding' && (
+        <Button onClick={onStopHoldTimer} variant="destructive" size="lg" className="w-full sm:w-auto">
+          <Pause className="mr-2 h-5 w-5" />
+          {translate('stopTimer')}
+        </Button>
+      )}
+      {showCancelButton && onCancelSession && (
+        <Button onClick={onCancelSession} variant="outline" size="lg" className="w-full sm:w-auto">
+          <XCircle className="mr-2 h-5 w-5" />
+          {translate('stopSession')}
+        </Button>
+      )}
+    </div>
+  );
 };
 
 export default SessionControls;

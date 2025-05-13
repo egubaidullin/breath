@@ -5,14 +5,29 @@ import type { UserProgress, SessionRecord } from '@/types';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Award, BarChart3, CalendarDays, TrendingUp } from 'lucide-react';
-import { format } from 'date-fns'; // Using date-fns as allowed for date formatting
+import { Button } from '@/components/ui/button';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Award, BarChart3, CalendarDays, TrendingUp, Trash2 } from 'lucide-react';
+import { format, parseISO } from 'date-fns';
+import { enUS, ru } from 'date-fns/locale';
+
 
 interface ProgressDisplayProps {
   progress: UserProgress | null;
+  onDeleteSession?: (sessionId: string) => void;
 }
 
-const ProgressDisplay = ({ progress }: ProgressDisplayProps) => {
+const ProgressDisplay = ({ progress, onDeleteSession }: ProgressDisplayProps) => {
   const { translate, language } = useLocalization();
 
   if (!progress || progress.sessions.length === 0) {
@@ -31,8 +46,9 @@ const ProgressDisplay = ({ progress }: ProgressDisplayProps) => {
 
   const formatDate = (dateString: string) => {
     try {
-      return format(new Date(dateString), 'PPp', { locale: language === 'ru' ? require('date-fns/locale/ru') : require('date-fns/locale/en-US') });
+      return format(parseISO(dateString), 'PPp', { locale: language === 'ru' ? ru : enUS });
     } catch (e) {
+      console.error("Error formatting date:", e);
       return dateString; // fallback
     }
   };
@@ -83,10 +99,11 @@ const ProgressDisplay = ({ progress }: ProgressDisplayProps) => {
                 <TableHead className="text-center">{translate('sessionRounds')}</TableHead>
                 <TableHead>{translate('sessionHolds')}</TableHead>
                 <TableHead className="text-right hidden sm:table-cell">Longest</TableHead>
+                {onDeleteSession && <TableHead className="text-right">{translate('actionColumnHeader')}</TableHead>}
               </TableRow>
             </TableHeader>
             <TableBody>
-              {progress.sessions.slice().reverse().map((session: SessionRecord) => ( // Show newest first
+              {progress.sessions.slice().reverse().map((session: SessionRecord) => ( 
                 <TableRow key={session.id}>
                   <TableCell className="font-medium">{formatDate(session.date)}</TableCell>
                   <TableCell className="text-center">
@@ -100,6 +117,34 @@ const ProgressDisplay = ({ progress }: ProgressDisplayProps) => {
                         {session.longestHold} {translate('sec')}
                      </Badge>
                   </TableCell>
+                  {onDeleteSession && (
+                    <TableCell className="text-right">
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="ghost" size="icon" aria-label={translate('deleteSession')}>
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>{translate('confirmDeleteSessionTitle')}</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              {translate('confirmDeleteSessionDescription')}
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>{translate('cancelButton')}</AlertDialogCancel>
+                            <AlertDialogAction 
+                              onClick={() => onDeleteSession(session.id)}
+                              className="bg-destructive hover:bg-destructive/90"
+                            >
+                              {translate('confirmDeleteButton')}
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </TableCell>
+                  )}
                 </TableRow>
               ))}
             </TableBody>

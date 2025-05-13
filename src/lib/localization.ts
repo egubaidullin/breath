@@ -34,6 +34,7 @@ export const translations: AllLocalizationStrings = {
     yourHoldTimes: 'Your hold times (seconds):',
     longestHoldThisSession: 'Longest hold this session: {time}s',
     backToDashboard: 'Back to Dashboard',
+    stopSession: 'Stop Session',
     // Progress Page
     yourProgress: 'Your Progress',
     longestBreathHold: 'Longest Breath Hold Ever',
@@ -43,6 +44,13 @@ export const translations: AllLocalizationStrings = {
     sessionDate: 'Date',
     sessionRounds: 'Rounds',
     sessionHolds: 'Holds (s)',
+    deleteAllData: 'Delete All My Data',
+    confirmDeleteAllTitle: 'Are you sure?',
+    confirmDeleteAllDescription: 'This will permanently delete all your session history and user name. This action cannot be undone.',
+    deleteSession: 'Delete Session',
+    confirmDeleteSessionTitle: 'Delete this session?',
+    confirmDeleteSessionDescription: 'This will permanently delete this session record. This action cannot be undone.',
+    actionColumnHeader: 'Actions',
     // Wim Hof Method Info
     wimHofMethodTitle: 'About the Wim Hof Method',
     wimHofMethodDescription: `The Wim Hof Method is a powerful technique that combines three pillars: Cold Therapy, Breathing, and Commitment. It's known for its potential benefits on physical and mental well-being.
@@ -60,6 +68,9 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     english: 'English',
     russian: 'Russian',
     closeButtonLabel: 'Close',
+    cancelButton: 'Cancel',
+    confirmDeleteButton: 'Yes, Delete',
+    confirmDeleteAllButton: 'Yes, Delete All',
   },
   ru: {
     appName: 'ДышиМудро',
@@ -94,6 +105,7 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     yourHoldTimes: 'Ваши задержки дыхания (секунды):',
     longestHoldThisSession: 'Самая долгая задержка в этой сессии: {time}с',
     backToDashboard: 'Вернуться на Панель',
+    stopSession: 'Остановить Сессию',
     // Progress Page
     yourProgress: 'Ваш Прогресс',
     longestBreathHold: 'Самая Долгая Задержка Дыхания',
@@ -103,6 +115,13 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     sessionDate: 'Дата',
     sessionRounds: 'Раунды',
     sessionHolds: 'Задержки (с)',
+    deleteAllData: 'Удалить Все Мои Данные',
+    confirmDeleteAllTitle: 'Вы уверены?',
+    confirmDeleteAllDescription: 'Это действие навсегда удалит всю вашу историю сессий и имя пользователя. Это действие нельзя отменить.',
+    deleteSession: 'Удалить Сессию',
+    confirmDeleteSessionTitle: 'Удалить эту сессию?',
+    confirmDeleteSessionDescription: 'Это действие навсегда удалит эту запись сессии. Это действие нельзя отменить.',
+    actionColumnHeader: 'Действия',
     // Wim Hof Method Info
     wimHofMethodTitle: 'О методе Вима Хофа',
     wimHofMethodDescription: `Метод Вима Хофа — это мощная техника, сочетающая три столпа: Холодотерапию, Дыхание и Приверженность. Он известен своими потенциальными преимуществами для физического и психического благополучия.
@@ -120,5 +139,8 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     english: 'Английский',
     russian: 'Русский',
     closeButtonLabel: 'Закрыть',
+    cancelButton: 'Отмена',
+    confirmDeleteButton: 'Да, Удалить',
+    confirmDeleteAllButton: 'Да, Удалить Всё',
   },
 };

@@ -84,7 +84,7 @@ const BreathingSession = () => {
             </Link>
           </div>
         );
-      case 'configuring': // This state is handled by ConfigurationModal externally
+      case 'configuring': 
         return null;
       case 'breathing':
       case 'holding':
@@ -95,7 +95,7 @@ const BreathingSession = () => {
             ((15 - sessionState.recoveryTime) / 15) * 100 : 0;
 
         return (
-          <div className="space-y-6">
+          <div className="space-y-6 w-full">
             <CardDescription className="text-center text-lg">
               {translate('round', { current: sessionState.currentRound, total: sessionState.totalRounds })}
             </CardDescription>
@@ -123,8 +123,8 @@ const BreathingSession = () => {
             <div className="flex justify-center mt-8">
               <SessionControls
                 phase={sessionState.phase}
-                onStartHold={() => {}} // Logic is internal to useWimHofLogic
                 onStopHoldTimer={userStopHold}
+                onCancelSession={resetSession} // Pass resetSession here
               />
             </div>
           </div>
@@ -138,12 +138,14 @@ const BreathingSession = () => {
             <p>{translate('yourHoldTimes')} {sessionState.currentSessionRecords.holdDurations.join(', ')}</p>
             <p>{translate('longestHoldThisSession', { time: longestThisSession })}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button onClick={resetSession} variant="default" className="bg-accent hover:bg-accent/90">
-                <PlayCircle className="mr-2 h-4 w-4" />
-                {translate('startSession')}
-              </Button>
+               <ConfigurationModal
+                triggerButtonText={translate('startSession')}
+                triggerButtonVariant="default"
+                triggerButtonClassName="w-full sm:w-auto bg-accent hover:bg-accent/90"
+                onConfirm={(rounds) => startSession(rounds)}
+              />
               <Link href="/progress">
-                <Button variant="outline">
+                <Button variant="outline" className="w-full sm:w-auto">
                     <BarChart className="mr-2 h-4 w-4" />
                     {translate('viewProgress')}
                 </Button>
@@ -163,7 +165,7 @@ const BreathingSession = () => {
           <CardTitle className="text-center">{translate('appName')}</CardTitle>
         )}
       </CardHeader>
-      <CardContent className="min-h-[300px] flex flex-col justify-center items-center">
+      <CardContent className="min-h-[300px] flex flex-col justify-center items-center px-4 py-8 sm:p-8">
         {renderContent()}
       </CardContent>
     </Card>
