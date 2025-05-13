@@ -46,7 +46,8 @@ const ProgressDisplay = ({ progress, onDeleteSession }: ProgressDisplayProps) =>
 
   const formatDate = (dateString: string) => {
     try {
-      return format(parseISO(dateString), 'PPp', { locale: language === 'ru' ? ru : enUS });
+      // Format as: Month Day, Year, HH:mm (e.g., May 13, 2025, 10:57)
+      return format(parseISO(dateString), 'PP, HH:mm', { locale: language === 'ru' ? ru : enUS });
     } catch (e) {
       console.error("Error formatting date:", e);
       return dateString; // fallback
@@ -95,10 +96,10 @@ const ProgressDisplay = ({ progress, onDeleteSession }: ProgressDisplayProps) =>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[200px]"><CalendarDays className="inline mr-1 h-4 w-4"/>{translate('sessionDate')}</TableHead>
+                <TableHead className="w-[200px] min-w-[180px]"><CalendarDays className="inline mr-1 h-4 w-4"/>{translate('sessionDate')}</TableHead>
                 <TableHead className="text-center">{translate('sessionRounds')}</TableHead>
+                <TableHead className="text-center hidden sm:table-cell">{translate('longestHoldColumnHeader')}</TableHead>
                 <TableHead>{translate('sessionHolds')}</TableHead>
-                <TableHead className="text-right hidden sm:table-cell">Longest</TableHead>
                 {onDeleteSession && <TableHead className="text-right">{translate('actionColumnHeader')}</TableHead>}
               </TableRow>
             </TableHeader>
@@ -109,13 +110,13 @@ const ProgressDisplay = ({ progress, onDeleteSession }: ProgressDisplayProps) =>
                   <TableCell className="text-center">
                     <Badge variant="secondary">{session.rounds}</Badge>
                   </TableCell>
-                  <TableCell>
-                    {session.holdDurations.join(', ')}
-                  </TableCell>
-                  <TableCell className="text-right hidden sm:table-cell">
+                  <TableCell className="text-center hidden sm:table-cell">
                      <Badge variant="outline" className="text-primary border-primary">
                         {session.longestHold} {translate('sec')}
                      </Badge>
+                  </TableCell>
+                  <TableCell>
+                    {session.holdDurations.map(h => `${h}${translate('sec')}`).join(', ')}
                   </TableCell>
                   {onDeleteSession && (
                     <TableCell className="text-right">

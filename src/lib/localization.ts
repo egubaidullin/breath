@@ -44,6 +44,7 @@ export const translations: AllLocalizationStrings = {
     sessionDate: 'Date',
     sessionRounds: 'Rounds',
     sessionHolds: 'Holds (s)',
+    longestHoldColumnHeader: 'Longest',
     deleteAllData: 'Delete All Data', // Changed from 'Delete All My Data'
     confirmDeleteAllTitle: 'Are you sure?',
     confirmDeleteAllDescription: 'This will permanently delete all your session history and user name. This action cannot be undone.',
@@ -115,6 +116,7 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     sessionDate: 'Дата',
     sessionRounds: 'Раунды',
     sessionHolds: 'Задержки (с)',
+    longestHoldColumnHeader: 'Макс.',
     deleteAllData: 'Удалить Все Данные', // Changed from 'Удалить Все Мои Данные'
     confirmDeleteAllTitle: 'Вы уверены?',
     confirmDeleteAllDescription: 'Вся история сессий и имя пользователя будут удалены навсегда. Действие нельзя отменить.', // Improved phrasing
