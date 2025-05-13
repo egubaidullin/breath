@@ -11,23 +11,29 @@ interface BreathingPacerProps {
 
 const BreathingPacer = ({ phase, currentBreath, breathsPerRound }: BreathingPacerProps) => {
   const { translate } = useLocalization();
-  let text = '';
+  let phaseText = '';
+  let pacerCircleText = '';
   let showPacer = false;
   let pacerClass = 'bg-primary';
 
   switch (phase) {
     case 'breathing':
-      text = `${translate('breathe')} (${currentBreath}/${breathsPerRound})`;
+      phaseText = `${translate('breathe')} (${currentBreath}/${breathsPerRound})`;
+      if (currentBreath && currentBreath % 2 !== 0) {
+        pacerCircleText = translate('breathIn');
+      } else {
+        pacerCircleText = translate('breathOut');
+      }
       showPacer = true;
       pacerClass = 'bg-primary breathing-pacer-animate'; // uses animation from globals.css
       break;
     case 'holding':
-      text = translate('holdBreath');
+      phaseText = translate('holdBreath');
       showPacer = true;
       pacerClass = 'bg-accent'; // Teal for hold
       break;
     case 'recovery':
-      text = translate('recoveryBreath');
+      phaseText = translate('recoveryBreath');
       showPacer = true;
       pacerClass = 'bg-yellow-500'; // Different color for recovery
       break;
@@ -48,14 +54,14 @@ const BreathingPacer = ({ phase, currentBreath, breathsPerRound }: BreathingPace
           <div
              className={`absolute inset-8 rounded-full flex items-center justify-center transition-all duration-1000 ease-in-out ${pacerClass}`}
           >
-            <span className="text-2xl font-semibold text-primary-foreground">
-              {phase === 'breathing' ? (currentBreath && currentBreath % 2 !== 0 ? translate('breathIn') : translate('breathOut')) : ''}
+            <span className="text-2xl font-semibold text-primary-foreground text-center px-2">
+              {pacerCircleText}
             </span>
           </div>
         </div>
       )}
       <p className="text-xl font-medium text-center text-foreground mt-4 min-h-[28px]">
-        {text}
+        {phaseText}
       </p>
     </div>
   );

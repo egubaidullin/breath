@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import { useLocalization } from '@/contexts/LocalizationContext';
 import BreathingSession from '@/components/app/BreathingSession';
+import WimHofMethodInfo from '@/components/app/WimHofMethodInfo';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function DashboardPage() {
@@ -29,6 +30,7 @@ export default function DashboardPage() {
     return (
       <div className="space-y-8">
         <Skeleton className="h-8 w-1/2" />
+        <Skeleton className="h-20 w-full" /> {/* Skeleton for WimHofMethodInfo */}
         <Skeleton className="h-64 w-full" />
         <div className="flex gap-4">
           <Skeleton className="h-12 w-40" />
@@ -45,6 +47,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-bold tracking-tight text-foreground">{welcomeMessage}</h1>
+      <WimHofMethodInfo />
       <BreathingSession />
     </div>
   );

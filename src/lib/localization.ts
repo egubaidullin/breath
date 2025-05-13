@@ -43,6 +43,16 @@ export const translations: AllLocalizationStrings = {
     sessionDate: 'Date',
     sessionRounds: 'Rounds',
     sessionHolds: 'Holds (s)',
+    // Wim Hof Method Info
+    wimHofMethodTitle: 'About the Wim Hof Method',
+    wimHofMethodDescription: `The Wim Hof Method is a powerful technique that combines three pillars: Cold Therapy, Breathing, and Commitment. It's known for its potential benefits on physical and mental well-being.
+
+**Breathing Exercise Steps:**
+1.  **Controlled Hyperventilation:** Sit in a comfortable position. Inhale deeply through the nose or mouth, and exhale unforced through the mouth. Repeat for 30-40 breaths. You might feel lightheaded or tingling sensations.
+2.  **Breath Retention (Exhale Hold):** After the last exhalation, hold your breath for as long as you comfortably can without force.
+3.  **Recovery Breath:** When you feel the urge to breathe, inhale deeply and hold for 10-15 seconds, then exhale. This completes one round.
+
+Typically, 3-4 rounds are performed in one session. Listen to your body and never force anything. Consult a healthcare professional if you have any health concerns.`,
     // General
     loading: 'Loading...',
     sec: 's',
@@ -92,6 +102,16 @@ export const translations: AllLocalizationStrings = {
     sessionDate: 'Дата',
     sessionRounds: 'Раунды',
     sessionHolds: 'Задержки (с)',
+    // Wim Hof Method Info
+    wimHofMethodTitle: 'О методе Вима Хофа',
+    wimHofMethodDescription: `Метод Вима Хофа — это мощная техника, сочетающая три столпа: Холодотерапию, Дыхание и Приверженность. Он известен своими потенциальными преимуществами для физического и психического благополучия.
+
+**Этапы дыхательного упражнения:**
+1.  **Контролируемая гипервентиляция:** Сядьте в удобное положение. Глубоко вдохните через нос или рот и без усилий выдохните через рот. Повторите 30-40 раз. Вы можете почувствовать легкое головокружение или покалывание.
+2.  **Задержка дыхания (на выдохе):** После последнего выдоха задержите дыхание так долго, как сможете комфортно, без насилия над собой.
+3.  **Восстановительный вдох:** Когда почувствуете потребность вдохнуть, сделайте глубокий вдох и задержите его на 10-15 секунд, затем выдохните. Это завершает один раунд.
+
+Обычно за одну сессию выполняется 3-4 раунда. Прислушивайтесь к своему телу и никогда ничего не форсируйте. Проконсультируйтесь с врачом, если у вас есть какие-либо проблемы со здоровьем.`,
     // General
     loading: 'Загрузка...',
     sec: 'с',
