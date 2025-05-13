@@ -14,7 +14,7 @@ export const translations: AllLocalizationStrings = {
     // Dashboard
     welcome: 'Welcome, {name}!',
     startSession: 'Start New Session',
-    viewProgress: 'View Your Progress',
+    viewProgress: 'View Progress', // Changed from 'View Your Progress'
     // Session Configuration
     configureSession: 'Configure Your Session',
     numberOfRounds: 'Number of Rounds (1-10):',
@@ -44,7 +44,7 @@ export const translations: AllLocalizationStrings = {
     sessionDate: 'Date',
     sessionRounds: 'Rounds',
     sessionHolds: 'Holds (s)',
-    deleteAllData: 'Delete All My Data',
+    deleteAllData: 'Delete All Data', // Changed from 'Delete All My Data'
     confirmDeleteAllTitle: 'Are you sure?',
     confirmDeleteAllDescription: 'This will permanently delete all your session history and user name. This action cannot be undone.',
     deleteSession: 'Delete Session',
@@ -81,11 +81,11 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     // User Name Form
     enterYourName: 'Введите ваше имя, чтобы начать:',
     namePlaceholder: 'Ваше Имя',
-    saveName: 'Сохранить Имя',
+    saveName: 'Сохранить', // Changed from 'Сохранить Имя'
     // Dashboard
     welcome: 'Добро пожаловать, {name}!',
-    startSession: 'Начать Новую Сессию',
-    viewProgress: 'Посмотреть Прогресс',
+    startSession: 'Начать Сессию', // Changed from 'Начать Новую Сессию'
+    viewProgress: 'Мой Прогресс', // Changed from 'Посмотреть Прогресс'
     // Session Configuration
     configureSession: 'Настройте Сессию',
     numberOfRounds: 'Количество Раундов (1-10):',
@@ -100,11 +100,11 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     holdBreath: 'Задержите дыхание',
     recoveryBreath: 'Восстановительное Дыхание',
     takeRecoveryBreath: 'Сделайте глубокий восстановительный вдох и задержите на 15с',
-    stopTimer: 'Остановить Таймер и Дышать',
+    stopTimer: 'Остановить и Дышать', // Changed from 'Остановить Таймер и Дышать'
     sessionComplete: 'Сессия Завершена!',
     yourHoldTimes: 'Ваши задержки дыхания (секунды):',
     longestHoldThisSession: 'Самая долгая задержка в этой сессии: {time}с',
-    backToDashboard: 'Вернуться на Панель',
+    backToDashboard: 'На Панель', // Changed from 'Вернуться на Панель'
     stopSession: 'Остановить Сессию',
     // Progress Page
     yourProgress: 'Ваш Прогресс',
@@ -115,12 +115,12 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     sessionDate: 'Дата',
     sessionRounds: 'Раунды',
     sessionHolds: 'Задержки (с)',
-    deleteAllData: 'Удалить Все Мои Данные',
+    deleteAllData: 'Удалить Все Данные', // Changed from 'Удалить Все Мои Данные'
     confirmDeleteAllTitle: 'Вы уверены?',
-    confirmDeleteAllDescription: 'Это действие навсегда удалит всю вашу историю сессий и имя пользователя. Это действие нельзя отменить.',
+    confirmDeleteAllDescription: 'Вся история сессий и имя пользователя будут удалены навсегда. Действие нельзя отменить.', // Improved phrasing
     deleteSession: 'Удалить Сессию',
     confirmDeleteSessionTitle: 'Удалить эту сессию?',
-    confirmDeleteSessionDescription: 'Это действие навсегда удалит эту запись сессии. Это действие нельзя отменить.',
+    confirmDeleteSessionDescription: 'Эта запись сессии будет удалена навсегда. Действие нельзя отменить.', // Improved phrasing
     actionColumnHeader: 'Действия',
     // Wim Hof Method Info
     wimHofMethodTitle: 'О методе Вима Хофа',
