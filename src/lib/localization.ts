@@ -59,6 +59,7 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     toggleLanguage: 'Switch Language',
     english: 'English',
     russian: 'Russian',
+    closeButtonLabel: 'Close',
   },
   ru: {
     appName: 'ДышиМудро',
@@ -118,5 +119,6 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     toggleLanguage: 'Переключить язык',
     english: 'Английский',
     russian: 'Русский',
+    closeButtonLabel: 'Закрыть',
   },
 };
