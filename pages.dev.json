@@ -1,0 +1,15 @@
+{
+  "name": "breathwise",
+  "build": {
+    "command": "npm run pages:build",
+    "output": ".vercel/output/static"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "compatibility_date": "2023-11-21",
+  "env": {
+    "NODE_ENV": "production",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  }
+}
