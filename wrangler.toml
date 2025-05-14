@@ -1,0 +1,48 @@
+# Конфигурация для Cloudflare Workers
+name = "breathwise"
+main = "./.cloudflare/worker.js"
+compatibility_date = "2023-11-21"
+
+# Настройки для Cloudflare Pages
+[site]
+bucket = "./.cloudflare/public"
+
+# Настройки для Cloudflare KV
+# [kv_namespaces]
+# BREATHWISE_KV = { binding = "BREATHWISE_KV" }
+
+# Настройки для Cloudflare D1
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "breathwise-db"
+# database_id = ""
+
+# Настройки для Cloudflare R2
+# [[r2_buckets]]
+# binding = "BREATHWISE_BUCKET"
+# bucket_name = "breathwise"
+
+# Настройки для Cloudflare Durable Objects
+# [[durable_objects.bindings]]
+# name = "BREATHWISE_DO"
+# class_name = "BreathwiseDO"
+
+# Настройки для Cloudflare Workers
+[build]
+command = "npm run pages:build"
+cwd = "."
+watch_dir = "src"
+
+# Настройки для Cloudflare Pages
+[env.production]
+workers_dev = false
+route = ""
+zone_id = ""
+
+# Настройки для Cloudflare Pages в режиме разработки
+[env.development]
+workers_dev = true
+
+# Настройки для Cloudflare Pages в режиме предпросмотра
+[env.preview]
+workers_dev = true

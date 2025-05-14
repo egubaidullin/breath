@@ -9,7 +9,7 @@ const geistSans = GeistSans;
 const geistMono = GeistMono;
 
 export const metadata: Metadata = {
-  title: 'BreatheWise - Wim Hof Method',
+  title: 'Eduard Gubaidullin - Wim Hof Method',
   description: 'Your personal guide to the Wim Hof Method breathing exercises.',
   manifest: '/manifest.json',
   icons: {
@@ -29,10 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
-        <meta name="application-name" content="BreatheWise" />
+        <meta name="application-name" content="Eduard Gubaidullin" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="BreatheWise" />
+        <meta name="apple-mobile-web-app-title" content="Eduard Gubaidullin" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-config" content="/icons/browserconfig.xml" />

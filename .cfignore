@@ -1,0 +1,46 @@
+# Игнорируем файлы и директории при деплое на Cloudflare Pages
+
+# Исходный код и конфигурации разработки
+/src
+/scripts
+/tests
+/.github
+/.vscode
+/.idea
+/.husky
+/.eslintrc.js
+/.prettierrc
+/tsconfig.json
+/jest.config.js
+/README.md
+/CHANGELOG.md
+/LICENSE
+
+# Зависимости и кеш
+/node_modules
+/.next/cache
+/.vercel/cache
+/.yarn
+/yarn.lock
+/package-lock.json
+/npm-debug.log*
+/yarn-debug.log*
+/yarn-error.log*
+/.pnpm-debug.log*
+
+# Временные файлы
+.DS_Store
+*.log
+*.swp
+*.bak
+*~
+.env.local
+.env.development
+.env.test
+
+# Файлы для локальной разработки
+/wrangler.toml
+/.dev.vars
+/cloudflare-pages.config.js
+/cloudflare-pages.json
+/next.config.js.bak

@@ -21,7 +21,7 @@ const BreathingPacer = ({ phase, currentBreath, breathsPerRound }: BreathingPace
   const actualBreathNumber = currentBreath ? Math.ceil(currentBreath / 2) : 0;
 
   // Determine if we're in an inhale phase based on the currentBreath
-  const isInhalePhase = currentBreath && currentBreath % 2 !== 0;
+  const isInhalePhase: boolean | undefined = currentBreath ? (currentBreath % 2 !== 0) : undefined;
 
   // Get the translated text for inhale and exhale
   const inhaleText = translate('breathInShort');

@@ -2,7 +2,7 @@ import type { AllLocalizationStrings } from '@/types';
 
 export const translations: AllLocalizationStrings = {
   en: {
-    appName: 'BreatheWise',
+    appName: 'Eduard Gubaidullin',
     tagline: 'Your guide to the Wim Hof Method',
     // Navigation
     navDashboard: 'Dashboard',
@@ -74,12 +74,9 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     cancelButton: 'Cancel',
     confirmDeleteButton: 'Yes, Delete',
     confirmDeleteAllButton: 'Yes, Delete All',
-    // Short breath phases for pacer
-    breathInShort: 'Inhale',
-    breathOutShort: 'Exhale',
   },
   ru: {
-    appName: 'ДышиМудро',
+    appName: 'Эдуард Губайдуллин',
     tagline: 'Ваш гид по методу Вима Хофа',
     // Navigation
     navDashboard: 'Панель',
@@ -151,8 +148,5 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     cancelButton: 'Отмена',
     confirmDeleteButton: 'Да, Удалить',
     confirmDeleteAllButton: 'Да, Удалить Всё',
-    // Short breath phases for pacer
-    breathInShort: 'Вдох',
-    breathOutShort: 'Выдох',
   },
 };
