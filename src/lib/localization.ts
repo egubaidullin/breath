@@ -23,7 +23,9 @@ export const translations: AllLocalizationStrings = {
     round: 'Round {current} of {total}',
     breathe: 'Breathe',
     breathIn: 'Inhale deeply...',
+    breathInShort: 'Inhale',
     breathOut: 'Exhale fully...',
+    breathOutShort: 'Exhale',
     prepareToHold: 'Prepare to hold...',
     exhaleAndHold: 'Exhale fully and HOLD',
     holdBreath: 'Hold your breath',
@@ -72,6 +74,9 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     cancelButton: 'Cancel',
     confirmDeleteButton: 'Yes, Delete',
     confirmDeleteAllButton: 'Yes, Delete All',
+    // Short breath phases for pacer
+    breathInShort: 'Inhale',
+    breathOutShort: 'Exhale',
   },
   ru: {
     appName: 'ДышиМудро',
@@ -95,7 +100,9 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     round: 'Раунд {current} из {total}',
     breathe: 'Дышите',
     breathIn: 'Вдохните глубоко...',
+    breathInShort: 'Вдох',
     breathOut: 'Выдохните полностью...',
+    breathOutShort: 'Выдох',
     prepareToHold: 'Приготовьтесь к задержке...',
     exhaleAndHold: 'Выдохните полностью и ДЕРЖИТЕ',
     holdBreath: 'Задержите дыхание',
@@ -144,5 +151,8 @@ Typically, 3-4 rounds are performed in one session. Listen to your body and neve
     cancelButton: 'Отмена',
     confirmDeleteButton: 'Да, Удалить',
     confirmDeleteAllButton: 'Да, Удалить Всё',
+    // Short breath phases for pacer
+    breathInShort: 'Вдох',
+    breathOutShort: 'Выдох',
   },
 };

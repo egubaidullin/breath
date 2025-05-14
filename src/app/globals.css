@@ -123,3 +123,76 @@ body {
 .breathing-pacer-animate {
   animation: breathe 4s ease-in-out infinite;
 }
+
+/* Анимация для вдоха - увеличение */
+.breathing-pacer-animate-inhale {
+  animation: breathe-in 4s ease-in-out infinite;
+}
+
+/* Анимация для выдоха - уменьшение */
+.breathing-pacer-animate-exhale {
+  animation: breathe-out 4s ease-in-out infinite;
+}
+
+/* Анимации для текста дыхания */
+@keyframes text-fade {
+  0%, 45% {
+    opacity: 1;
+  }
+  50%, 95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.breathing-text-inhale {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  animation: text-fade 4s ease-in-out infinite;
+}
+
+.breathing-text-exhale {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  animation: text-fade 4s ease-in-out infinite reverse;
+}
+
+.breathing-text-container {
+  position: relative;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes breathe-in {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes breathe-out {
+  0% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}

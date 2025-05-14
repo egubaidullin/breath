@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import type { SessionState, BreathingPhase } from '@/types';
 import useTimer from './useTimer';
 
@@ -24,47 +24,83 @@ export function useWimHofLogic({ initialTotalRounds = 3, onSessionComplete }: Wi
     currentSessionRecords: { holdDurations: [] },
   });
 
-  const { 
-    time: breathCycleTime, 
-    start: startBreathCycleTimer, 
-    stop: stopBreathCycleTimer, 
-    reset: resetBreathCycleTimer 
+  const handleBreathCycleTimerEndRef = useRef<() => void>();
+
+  const {
+    time: breathCycleTime,
+    start: startBreathCycleTimer,
+    stop: stopBreathCycleTimer,
+    reset: resetBreathCycleTimer
   } = useTimer(2, { // Approx 2s per breath part (inhale/exhale)
-    onEnd: () => {
-      if (sessionState.phase === 'breathing') {
-        handleNextBreath();
-      }
-    }
+    onEnd: () => handleBreathCycleTimerEndRef.current?.()
   });
 
-  const { 
-    time: holdTimerTime, 
-    start: startHoldTimer, 
-    stop: stopHoldTimer, 
-    reset: resetHoldTimer 
+  const {
+    time: holdTimerTime,
+    start: startHoldTimer,
+    stop: stopHoldTimer,
+    reset: resetHoldTimer
   } = useTimer(undefined, { // Count-up timer
     onTick: (t) => setSessionState(prev => ({ ...prev, holdTime: t }))
   });
 
-  const { 
-    time: recoveryTimerTime, 
-    start: startRecoveryTimer, 
-    stop: stopRecoveryTimer, 
-    reset: resetRecoveryTimer 
+  const {
+    time: recoveryTimerTime,
+    start: startRecoveryTimer,
+    stop: stopRecoveryTimer,
+    reset: resetRecoveryTimer
   } = useTimer(RECOVERY_HOLD_DURATION, { // Countdown timer
     initialTime: RECOVERY_HOLD_DURATION,
     onTick: (t) => setSessionState(prev => ({ ...prev, recoveryTime: t})),
-    onEnd: () => {
+    onEnd: () => { // This existing structure correctly defers handleEndRecovery resolution
       handleEndRecovery();
     }
   });
 
+  // Define handleBreathCycleTimerEnd AFTER useTimer hooks that initialize its dependencies
+  const handleBreathCycleTimerEnd = useCallback(() => {
+    setSessionState(prev => {
+      if (prev.phase !== 'breathing') {
+        // If not in breathing phase, this callback might have been triggered
+        // erroneously or from a previous state. Do nothing.
+        return prev;
+      }
+
+      // Check if we've completed all breaths for this round
+      // Each full breath consists of 2 steps: inhale and exhale
+      // So we need to check if we've reached BREATHS_PER_ROUND * 2
+      if (prev.currentBreath < BREATHS_PER_ROUND * 2) {
+        // Still in breathing round, increment breath and restart timer for next breath part
+        resetBreathCycleTimer(2);
+        startBreathCycleTimer();
+        return { ...prev, currentBreath: prev.currentBreath + 1 };
+      } else {
+        // Finished breaths for this round, transition to hold
+        stopBreathCycleTimer(); // Explicitly stop, good practice
+        resetHoldTimer(0);
+        startHoldTimer();
+        return { ...prev, phase: 'holding', holdTime: 0 };
+      }
+    });
+  }, [
+    resetBreathCycleTimer,
+    startBreathCycleTimer,
+    stopBreathCycleTimer,
+    resetHoldTimer,
+    startHoldTimer
+  ]);
+
+  useEffect(() => {
+    handleBreathCycleTimerEndRef.current = handleBreathCycleTimerEnd;
+  }, [handleBreathCycleTimerEnd]);
+
   const startSession = useCallback((rounds: number) => {
+    stopBreathCycleTimer(); // Ensure timer is stopped before starting a new session
     setSessionState({
       phase: 'breathing',
       currentRound: 1,
       totalRounds: rounds,
-      currentBreath: 1,
+      currentBreath: 1, // Start with 1 (inhale)
       breathsPerRound: BREATHS_PER_ROUND,
       holdTime: 0,
       recoveryTime: RECOVERY_HOLD_DURATION,
@@ -72,24 +108,10 @@ export function useWimHofLogic({ initialTotalRounds = 3, onSessionComplete }: Wi
     });
     resetBreathCycleTimer(2); // reset with initial time for breath cycle
     startBreathCycleTimer();
-  }, [resetBreathCycleTimer, startBreathCycleTimer]);
+  }, [stopBreathCycleTimer, resetBreathCycleTimer, startBreathCycleTimer]);
 
-  const handleNextBreath = () => {
-    setSessionState(prev => {
-      if (prev.currentBreath < prev.breathsPerRound) {
-        resetBreathCycleTimer(2);
-        startBreathCycleTimer();
-        return { ...prev, currentBreath: prev.currentBreath + 1 };
-      } else {
-        // Last breath of the round, transition to hold
-        stopBreathCycleTimer();
-        resetHoldTimer(0); // Reset hold timer to 0
-        startHoldTimer();
-        return { ...prev, phase: 'holding', holdTime: 0 };
-      }
-    });
-  };
-  
+  // The old handleNextBreath function is now replaced by handleBreathCycleTimerEnd defined above.
+
   const userStopHold = useCallback(() => {
     stopHoldTimer();
     setSessionState(prev => {
@@ -117,7 +139,7 @@ export function useWimHofLogic({ initialTotalRounds = 3, onSessionComplete }: Wi
           ...prev,
           phase: 'breathing',
           currentRound: prev.currentRound + 1,
-          currentBreath: 1,
+          currentBreath: 1, // Start with 1 (inhale)
           holdTime: 0, // Reset for next hold
         };
       } else {

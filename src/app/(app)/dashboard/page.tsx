@@ -29,7 +29,6 @@ export default function DashboardPage() {
   if (isLoading) {
     return (
       <div className="space-y-8">
-        <Skeleton className="h-8 w-1/2" />
         <Skeleton className="h-20 w-full" /> {/* Skeleton for WimHofMethodInfo */}
         <Skeleton className="h-64 w-full" />
         <div className="flex gap-4">
@@ -39,14 +38,9 @@ export default function DashboardPage() {
       </div>
     );
   }
-  
-  // Re-trigger welcome message translation if language changes
-  const welcomeMessage = userName ? translate('welcome', { name: userName }) : '';
-
 
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-bold tracking-tight text-foreground">{welcomeMessage}</h1>
       <WimHofMethodInfo />
       <BreathingSession />
     </div>

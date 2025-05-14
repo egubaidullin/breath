@@ -84,13 +84,13 @@ const BreathingSession = () => {
             </Link>
           </div>
         );
-      case 'configuring': 
+      case 'configuring':
         return null;
       case 'breathing':
       case 'holding':
       case 'recovery':
-        const progressValue = sessionState.phase === 'breathing' ? 
-            (sessionState.currentBreath / sessionState.breathsPerRound) * 100 :
+        const progressValue = sessionState.phase === 'breathing' ?
+            (Math.ceil(sessionState.currentBreath / 2) / sessionState.breathsPerRound) * 100 :
             sessionState.phase === 'recovery' ?
             ((15 - sessionState.recoveryTime) / 15) * 100 : 0;
 
@@ -99,7 +99,7 @@ const BreathingSession = () => {
             <CardDescription className="text-center text-lg">
               {translate('round', { current: sessionState.currentRound, total: sessionState.totalRounds })}
             </CardDescription>
-            
+
             {sessionState.phase === 'breathing' && (
               <Progress value={progressValue} className="w-full h-2" />
             )}
@@ -112,7 +112,7 @@ const BreathingSession = () => {
               currentBreath={sessionState.currentBreath}
               breathsPerRound={sessionState.breathsPerRound}
             />
-            
+
             {sessionState.phase === 'holding' && (
               <TimerDisplay timeInSeconds={sessionState.holdTime} className="text-6xl font-bold text-center text-accent my-4" />
             )}
