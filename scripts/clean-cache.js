@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const rimraf = require('rimraf');
+const { execSync } = require('child_process');
 
 const rootDir = path.resolve(__dirname, '..');
 const cacheDir = path.join(rootDir, '.next/cache');
@@ -10,7 +10,12 @@ function cleanCache() {
 
   try {
     if (fs.existsSync(cacheDir)) {
-      rimraf.sync(cacheDir);
+      // Используем встроенные команды для удаления директории
+      if (process.platform === 'win32') {
+        execSync(`rmdir /s /q "${cacheDir}"`, { stdio: 'inherit' });
+      } else {
+        execSync(`rm -rf "${cacheDir}"`, { stdio: 'inherit' });
+      }
       console.log('Cache directory cleaned successfully.');
     } else {
       console.log('Cache directory does not exist. Nothing to clean.');
