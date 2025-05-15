@@ -1,4 +1,4 @@
-# Перенаправляем все запросы на Next.js
-/* /_next/data/:build/index.json 200
-/* /_next/data/:build/:path*.json 200
+# Перенаправляем запросы на Next.js
+/_next/data/:build/index.json /_next/data/:build/index.json 200
+/_next/data/:build/:path*.json /_next/data/:build/:path*.json 200
 /* / 200
