@@ -11,6 +11,7 @@
     "/*.svg",
     "/*.json",
     "/_headers",
-    "/_redirects"
+    "/_redirects",
+    "/_worker.js"
   ]
 }

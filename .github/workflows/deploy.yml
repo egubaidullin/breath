@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Build project
-        run: npm run pages:build
+        run: npm run pages:prepare
         env:
           NODE_ENV: production
           NEXT_TELEMETRY_DISABLED: 1

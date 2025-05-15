@@ -13,8 +13,9 @@
     "typecheck": "tsc --noEmit",
     "analyze": "ANALYZE=true next build",
     "pages:build": "npx @cloudflare/next-on-pages",
+    "pages:prepare": "node scripts/deploy-to-cloudflare.js",
     "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
-    "pages:deploy": "npm run pages:build && npx wrangler pages deploy .vercel/output/static"
+    "pages:deploy": "npm run pages:prepare && npx wrangler pages deploy .vercel/output/static"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.8.0",

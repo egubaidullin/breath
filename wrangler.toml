@@ -2,6 +2,7 @@
 name = "breathwise"
 main = "./.cloudflare/worker.js"
 compatibility_date = "2023-11-21"
+compatibility_flags = ["nodejs_compat"]
 
 # Настройки для Cloudflare Pages
 [site]
